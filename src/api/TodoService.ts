@@ -13,7 +13,10 @@ export default class TodoService {
    * @param {number} [page=1] - номер страницы
    * @returns Promise, который разрешается с массивом Todo
    */
-  static async getAll(limit = 10, page = 1): Promise<AxiosResponse<Todo[]>> {
+  static async getAll(
+    limit: number = 10,
+    page: number = 1
+  ): Promise<AxiosResponse<Todo[]>> {
     return await axios.get(this.BASE_URL, {
       params: {
         _limit: limit,
