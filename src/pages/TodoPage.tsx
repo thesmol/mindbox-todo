@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { Todo } from "../types.ts/todo";
 import TodoList from "../components/TodoList";
 import CarActivity from "../components/ui/CarActivity";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useFetching } from "../hooks/useFetching";
 import TodoService from "../api/TodoService";
 import { getBatchCount } from "../utils/getBatchCount";
@@ -11,8 +11,6 @@ import { useObserver } from "../hooks/useObserver";
 const TodoPage = () => {
   /** Список тудушек */
   const [todos, setTodos] = useState<Todo[]>([]);
-  /** Лимит загрузки тудушек (по умолчанию 10) */
-  const [limit, setLimit] = useState<number>(10);
   /** Текущий набор загруженных тудушек (по умолчанию 1) */
   const [batch, setBatch] = useState<number>(1);
   /** Общее количество наборов загруженных данных */
@@ -20,13 +18,17 @@ const TodoPage = () => {
   /** реф на последний видимый элемент, который триггерит подгрузку новых элементов */
   const lastElement = useRef<HTMLDivElement | null>(null);
 
+  /** Лимит загрузки тудушек (по умолчанию 10) */
+  const limit = 10;
+
+  /** Мемоизируем fetchTodos с использованием useCallback */
   const [fetchTodos, isTodosLoading, todoError] = useFetching(
-    async (limit: number, page: number) => {
+    useCallback(async (limit: number, page: number) => {
       const response = await TodoService.getAll(limit, page);
-      setTodos([...todos, ...response.data]);
+      setTodos((prevTodos) => [...prevTodos, ...response.data]);
       const totalCount = response.headers["x-total-count"];
       setTotalBatches(getBatchCount(totalCount, limit));
-    }
+    }, [])
   );
 
   useObserver(lastElement, batch < totalBatches, isTodosLoading, () => {
@@ -34,10 +36,8 @@ const TodoPage = () => {
   });
 
   useEffect(() => {
-    // fetchTodos(limit, batch);
-  }, [batch, limit, fetchTodos]);
-
-  console.log(batch, limit);
+    fetchTodos(limit, batch);
+  }, [batch]);
 
   if (todoError) {
     return (
@@ -62,7 +62,7 @@ const TodoPage = () => {
         <TodoList todos={todos} handleTodoChange={handleChange} />
 
         {/** Последний видимый элемент, который триггерит подгрузку новых элементов */}
-        <div className="w-full h-[5px] opacity-0" ref={lastElement} />
+        <div className="h-[5px] opacity-0" ref={lastElement} />
       </Box>
     </Box>
   );
