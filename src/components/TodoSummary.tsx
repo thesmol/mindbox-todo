@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { FilterQuery } from "../types.ts/todo";
-import ActiveCount from "./ActiveCount";
+import ActiveCount from "./ui/ActiveCount";
 import Loader from "./ui/Loader";
 import FilterGroup from "./FilterGroup";
 import ActionButton from "./ui/ActionButton";
