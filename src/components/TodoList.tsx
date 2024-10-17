@@ -1,25 +1,39 @@
 import { Box } from "@mui/material";
 import { Todo } from "../types.ts/todo";
 import TodoItem from "./TodoItem";
-import TodoSummary from "./TodoSummary";
-import { useMemo } from "react";
+import Loader from "./ui/Loader";
 
 interface TodoListProps {
   todos: Todo[];
-  handleTodoChange: () => void;
+  handleTodoChange: (todo: Todo) => void;
+  lastElementRef: React.RefObject<HTMLDivElement>;
+  loading: boolean;
 }
 
-const TodoList = ({ todos, handleTodoChange }: TodoListProps) => {
-  const leftTodo = useMemo(() => {
-    todos.reduce((acc, todo) => (todo.completed ? acc : acc + 1), 0);
-  }, [todos]);
-
+const TodoList = ({
+  todos,
+  handleTodoChange,
+  lastElementRef,
+  loading,
+}: TodoListProps) => {
   return (
-    <Box className="divide-y divide-slate-200 flex flex-col w-full bg-white shadow-xl">
-      {todos.map((todo) => (
-        <TodoItem todo={todo} handleChange={handleTodoChange} key={todo.id} />
-      ))}
-      <TodoSummary />
+    <Box className="w-full flex flex-col h-[75vh] flex-grow overflow-y-auto">
+      <Box className="divide-y divide-divider dark:divide-dividerDark">
+        {todos.map((todo, index) => (
+          <TodoItem
+            todo={todo}
+            handleChange={handleTodoChange}
+            key={`${todo.id}-${index}`}
+          />
+        ))}
+        {/** Наблюдаемый элемент, вызывающий подгрузку новой партии данных */}
+        <div ref={lastElementRef} className="h-0 opacity-0" />
+      </Box>
+      {loading && (
+        <Box className="w-full h-[60px] flex justify-center items-center text-todoInactive dark:text-todoInactiveDark">
+          <Loader size={30} />
+        </Box>
+      )}
     </Box>
   );
 };
