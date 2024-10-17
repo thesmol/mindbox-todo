@@ -25,7 +25,6 @@ const CarActivity: React.FC<ThemeToggleProps> = ({
     toggleNekoSleep();
   };
 
-
   return (
     <div {...props}>
       <img
@@ -37,7 +36,7 @@ const CarActivity: React.FC<ThemeToggleProps> = ({
       />
       <button
         onClick={handleButtonClick}
-        className={`absolute dark:bg-bgTodo bg-bgTodoDark top-[12px] border-1 p-2 m-2 rounded-3xl transition-all duration-300 ${
+        className={`absolute dark:bg-bg bg-bgDark top-[12px] border-1 p-2 m-2 rounded-3xl transition-all duration-300 ${
           isNekoSleeping ? "left-[100px]" : "left-[10px]"
         }`}
       >
