@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Neko } from "neko-ts";
+import { Theme } from "../types.ts/todo";
 
 interface UseNekoOptions {
   initialX?: number;
   initialY?: number;
   speed?: number;
+  theme: Theme;
 }
 
 /**
  * Хук, который создает экземпляр Neko, который может
  * спать или быть бодрым.
+ *
+ * По умолчанию кот носится или спит в зависимости от освещения (темы)
  *
  * @param {UseNekoOptions} [options] - опции:
  *   - {number} [initialX=500] - координата X для
@@ -27,13 +31,23 @@ export function useNeko({
   initialX = 500,
   initialY = 100,
   speed = 10,
-}: UseNekoOptions = {}): {
+  theme,
+}: UseNekoOptions): {
   isNekoSleeping: boolean;
   toggleNekoSleep: () => void;
 } {
   const neko = useRef<Neko>();
-  const [isNekoSleeping, setIsNekoSleeping] = useState<boolean>(false);
 
+  const [isNekoSleeping, setIsNekoSleeping] = useState<boolean>(
+    theme === "dark"
+  );
+
+  // Добавляем эффект для синхронизации состояния с темой
+  useEffect(() => {
+    setIsNekoSleeping(theme === "dark");
+  }, [theme]);
+
+  // Инициализация Neko
   useEffect(() => {
     if (!neko.current) {
       neko.current = new Neko({

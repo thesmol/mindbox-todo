@@ -1,14 +1,33 @@
 import { useNeko } from "../../hooks/useNeko";
+import { useTheme } from "../../hooks/useTheme";
 
-const CarActivity = () => {
+type ThemeToggleProps = React.HTMLAttributes<HTMLDivElement>;
+
+/**
+ * Компонент, отображающий спящую или бегающую за курсором кошатину
+ * Нажатие на кнопку меняет настроение кошатины: спящее или игривое.
+ * Если кошка спит, ради ее комфорта выключается свет и наоборот - бегать в при свете
+ */
+const CarActivity: React.FC<ThemeToggleProps> = ({
+  ...props
+}: ThemeToggleProps) => {
+  const { theme, toggleTheme } = useTheme();
+
   const { isNekoSleeping, toggleNekoSleep } = useNeko({
     initialX: 50,
     initialY: 20,
     speed: 10,
+    theme,
   });
 
+  const handleButtonClick = () => {
+    toggleTheme();
+    toggleNekoSleep();
+  };
+
+
   return (
-    <div>
+    <div {...props}>
       <img
         src="cat-bed.png"
         alt="Neko"
@@ -17,14 +36,12 @@ const CarActivity = () => {
         }`}
       />
       <button
-        onClick={toggleNekoSleep}
-        className={`absolute top-[10px] border-2 border-gray-300 p-2 m-2 rounded-3xl transition-all duration-300 ${
-          isNekoSleeping ? "bg-slate-900 left-[100px]" : "bg-white left-[10px]"
+        onClick={handleButtonClick}
+        className={`absolute dark:bg-bgTodo bg-bgTodoDark top-[12px] border-1 p-2 m-2 rounded-3xl transition-all duration-300 ${
+          isNekoSleeping ? "left-[100px]" : "left-[10px]"
         }`}
       >
-        <p className={`${!isNekoSleeping ? "text-slate-900" : "text-white"}`}>
-          {isNekoSleeping ? "sleepin 🐈‍⬛💤" : "runnin 🐈💣"}
-        </p>
+        {isNekoSleeping ? "💤🐈‍⬛🌑" : "💥🐈☀️"}
       </button>
     </div>
   );
