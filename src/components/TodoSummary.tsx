@@ -28,20 +28,28 @@ const TodoSummary = ({
 }: TodoSummaryProps) => {
   return (
     <Box
-      className="relative w-full p-4 flex justify-between items-center text-sm
-    shadow-paper dark:shadow-paperDark text-todoInactive dark:text-todoInactiveDark"
+      className="relative w-full p-4 text-sm shadow-paper dark:shadow-paperDark 
+    text-todoInactive dark:text-todoInactiveDark flex flex-wrap gap-4"
     >
-      {/** Количество активных тудушек */}
-      {!isActiveCountLoading ? (
-        <ActiveCount count={activeTodosCount} />
-      ) : (
-        <Loader size={20} />
-      )}
+      {/* Количество активных тудушек */}
+      <div className="flex-shrink-0">
+        {!isActiveCountLoading ? (
+          <ActiveCount count={activeTodosCount} />
+        ) : (
+          <Loader size={20} />
+        )}
+      </div>
 
-      {/** Кнопки фильтрации */}
-      <FilterGroup activeFilter={filter} setActiveFilter={handleFilterChange} />
-      <Box className="flex gap-2">
-        {/** Кнопка добавления тудушек с сервера*/}
+      {/* Группа фильтров - будет переноситься в центр при необходимости */}
+      <div className="flex-grow basis-full md:basis-auto order-3 md:order-none flex justify-center">
+        <FilterGroup
+          activeFilter={filter}
+          setActiveFilter={handleFilterChange}
+        />
+      </div>
+
+      {/* Кнопки действий */}
+      <div className="flex gap-2 ml-auto flex-shrink-0">
         {handleFetch && (
           <ActionButton
             handleClick={handleFetch}
@@ -50,13 +58,12 @@ const TodoSummary = ({
             extraClass={"w-[80px]"}
           />
         )}
-        {/** Кнопка удаления завершенных тудушек */}
         <ActionButton
           handleClick={handleDelete}
           isLoading={isDeleteLoading ?? false}
           label={"Clear completed"}
         />
-      </Box>
+      </div>
     </Box>
   );
 };

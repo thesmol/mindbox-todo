@@ -17,7 +17,7 @@ const TodoList = ({
   loading,
 }: TodoListProps) => {
   return (
-    <Box className="w-full flex flex-col h-[75vh] flex-grow overflow-y-auto">
+    <Box className="w-full flex flex-col min-h-[70vh] flex-grow overflow-y-scroll">
       <Box className="divide-y divide-divider dark:divide-dividerDark">
         {todos.map((todo, index) => (
           <TodoItem
