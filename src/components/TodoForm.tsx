@@ -84,7 +84,7 @@ const TodoForm = () => {
   return (
     <Box
       className="divide-y w-full mb-4
-    divide-divider dark:divide-dividerDark bg-bgTodo dark:bg-bgTodoDark shadow-dark dark:shadow-light"
+    divide-divider dark:divide-dividerDark bg-bgTodo dark:bg-bgTodoDark shadow-paper dark:shadow-paperDark"
     >
       <TodoInput
         isTodosOpen={isTodosOpen}
