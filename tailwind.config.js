@@ -46,5 +46,29 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-thin": {
+          "scrollbar-width": "thin", // Firefox
+        },
+        ".scrollbar-thumb-rounded": {
+          "scrollbar-color": "#cd86b5 #f6e4fa", // Цвет ползунка и трека для Firefox
+          "&::-webkit-scrollbar": {
+            width: "8px", // Ширина скроллбара
+            height: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#cd86b5", // Цвет ползунка
+            borderRadius: "9999px", // Закругление ползунка
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "#f6e4fa", // Цвет трека
+          },
+        },
+      };
+
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+  ],
 };
