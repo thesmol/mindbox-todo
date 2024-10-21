@@ -28,7 +28,7 @@ const TodoSummary = ({
 }: TodoSummaryProps) => {
   return (
     <Box
-      className="relative w-full p-4 text-sm shadow-paper dark:shadow-paperDark 
+      className="relative w-full p-4 text-sm 
     text-todoInactive dark:text-todoInactiveDark flex flex-wrap gap-4"
     >
       {/* Количество активных тудушек */}
