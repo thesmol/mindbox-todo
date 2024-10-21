@@ -32,7 +32,7 @@ const TodoSummary = ({
     text-todoInactive dark:text-todoInactiveDark flex flex-wrap gap-4"
     >
       {/* Количество активных тудушек */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 flex items-center">
         {!isActiveCountLoading ? (
           <ActiveCount count={activeTodosCount} />
         ) : (
