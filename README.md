@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Mindbox Todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Добро пожаловать в Mindbox Todo - проект, разработанный в рамках тестового задания для Mindbox. Это не просто очередной список дел, а приложение с характером.
 
-Currently, two official plugins are available:
+## Особенности проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Управление задачами: добавление, выполнение, фильтрация
+- Тёмная тема для поздних вечеров за работой
+- Адаптивный дизайн - от смартфона до широкоформатного монитора
+- Локальное хранение задач
+- Анимированный кот-компаньон (потому что каждый проект заслуживает своего шняпса)
 
-## Expanding the ESLint configuration
+## О коте
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Пиксельный питомец - не просто элемент декора. Днём он бодро бегает по экрану, следуя за курсором и напоминая, что даже в разгар рабочего дня можно найти минутку для улыбки. В тёмное время суток (или при включении тёмной темы) кот мирно засыпает, подавая пример правильного баланса работы и отдыха (кот - уличный (пакет с npm)).
+ 
+## Технологии
 
-- Configure the top-level `parserOptions` property like this:
+- React + TypeScript: для надёжной и типобезопасной разработки
+- Tailwind CSS и MUI: для стильного и адаптивного дизайна
+- React Hooks: для эффективного управления состоянием
+- Vite: для молниеносной сборки проекта
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## Запуск проекта
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Клонируйте репозиторий: `git clone https://github.com/thesmol/mindbox-todo.git`
+2. Установите зависимости: `npm install`
+3. Запустите сервер разработки: `npm run start`
+4. Откройте `http://localhost:5173/mindbox-todo/` и приступайте к управлению задачами!
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+## Тестирование
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+Для запуска тестов используйте команду: `npm test`
+
+## Развёртывание
+
+Проект настроен на автоматический деплой на GitHub Pages при пуше в ветку main. Магия современных CI/CD инструментов в действии!
+
+## Лицензия
+
+Проект распространяется под лицензией MIT.
+
+Приятного использования! И помните: каждая выполненная задача - это маленькая победа. 🎉
