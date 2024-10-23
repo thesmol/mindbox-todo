@@ -20,5 +20,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "setupTests.ts"],
+  "paths": {
+    "@testing-library/jest-dom": ["node_modules/@testing-library/jest-dom"]
+  }
 }
