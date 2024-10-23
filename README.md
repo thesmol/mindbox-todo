@@ -2,45 +2,6 @@
 
 Добро пожаловать в Mindbox Todo - проект, разработанный в рамках тестового задания для Mindbox. Это не просто очередной список дел, а приложение с характером.
 
-## Структура проекта
-...
-├── src
-│  ├── App.tsx
-│  ├── api
-│  │  ├── TodoFakeService.ts - Набор функций по работе с localStorage, имитирующий сервис по работе с api
-│  │  └── TodoLocalService.ts - Сервис по работе с api от jsonplaceholder (сделан больше для галочки)
-│  ├── components - Функциональные компоненты
-│  │  ├── FilterGroup.tsx
-│  │  ├── TodoForm.tsx
-│  │  ├── TodoInput.tsx
-│  │  ├── TodoItem.tsx
-│  │  ├── TodoList.tsx
-│  │  ├── TodoSummary.tsx
-│  │  └── providers - Провайдеры
-│  │  │  └── ThemeProvider.tsx
-│  │  └── ui - UI компоненты
-│  │     └── ActionButton.tsx
-│  │     └── ActiveCount.tsx
-│  │     └── CarActivity.tsx
-│  │     └── CollapseButton.tsx
-│  │     └── CollapsePortal.tsx
-│  │     └── CustomCheckBox.tsx
-│  │     └── Loader.tsx
-│  ├── hooks - Кастомные хуки
-│  │  ├── useFilteredTodos.ts
-│  │  ├── useNeko.ts
-│  │  ├── useObserver.ts
-│  │  ├── useQuery.ts
-│  │  └── useTheme.tsx
-│  ├── main.tsx
-│  ├── pages
-│  │  └── TodoPage.tsx
-│  ├── types.ts
-│  │  └── todo.ts
-│  ├── utils
-│  │  └── todoUtils.ts
-...
-
 ## Особенности проекта
 
 - Управление задачами: добавление, выполнение, фильтрация
