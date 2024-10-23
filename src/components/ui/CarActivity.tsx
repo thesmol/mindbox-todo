@@ -1,3 +1,4 @@
+import React from "react";
 import { useNeko } from "../../hooks/useNeko";
 import { useTheme } from "../../hooks/useTheme";
 

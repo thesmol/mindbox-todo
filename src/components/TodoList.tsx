@@ -1,3 +1,4 @@
+import React from "react";
 import { Box } from "@mui/material";
 import { Todo } from "../types.ts/todo";
 import TodoItem from "./TodoItem";
@@ -6,11 +7,11 @@ import Loader from "./ui/Loader";
 interface TodoListProps {
   todos: Todo[];
   handleTodoChange: (todo: Todo) => void;
-  lastElementRef: React.RefObject<HTMLDivElement>;
+  lastElementRef?: React.RefObject<HTMLDivElement>;
   loading: boolean;
 }
 
-const TodoList = ({
+const TodoList: React.FC<TodoListProps> = ({
   todos,
   handleTodoChange,
   lastElementRef,

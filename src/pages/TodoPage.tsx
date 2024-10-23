@@ -1,9 +1,10 @@
+import React from "react";
 import { Box } from "@mui/material";
 
 import TodoForm from "../components/TodoForm";
 import CarActivity from "../components/ui/CarActivity";
 
-const TodoPage = () => {
+const TodoPage: React.FC = () => {
   return (
     /** Основной контейнер страницы с тудушками */
     <Box className="w-full min-h-[100vh] flex flex-col items-center">

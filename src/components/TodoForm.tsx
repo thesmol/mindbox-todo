@@ -1,3 +1,4 @@
+import React from "react";
 import { Box } from "@mui/material";
 import TodoList from "./TodoList";
 import TodoSummary from "./TodoSummary";
@@ -11,7 +12,7 @@ import CollapsePortal from "./ui/CollapsePortal";
 import TodoInput from "./TodoInput";
 
 /** Форма работы с тудушками */
-const TodoForm = () => {
+const TodoForm: React.FC = () => {
   /** Список тудушек */
   const [todos, setTodos] = useState<Todo[]>([]);
   /** Состояние фильтрации */

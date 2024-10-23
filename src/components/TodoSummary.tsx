@@ -1,3 +1,4 @@
+import React from "react";
 import { Box } from "@mui/material";
 import { FilterQuery } from "../types.ts/todo";
 import ActiveCount from "./ui/ActiveCount";
@@ -16,7 +17,7 @@ interface TodoSummaryProps {
   isActiveCountLoading: boolean;
 }
 
-const TodoSummary = ({
+const TodoSummary: React.FC<TodoSummaryProps> = ({
   filter,
   handleFilterChange,
   handleDelete,

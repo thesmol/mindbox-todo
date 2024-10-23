@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from "react";
 import { Collapse, Box } from "@mui/material";
 
@@ -17,7 +18,7 @@ interface CollapsePortalProps {
  * @prop {string} [className] - CSS-класс, который будет добавлен
  *   к обертке
  */
-const CollapsePortal = ({
+const CollapsePortal: React.FC<CollapsePortalProps> = ({
   children,
   className,
   isOpen,
